@@ -1,0 +1,20 @@
+plugins {
+    id 'groovy'
+    id 'maven'
+}
+
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_1_7
+//    targetCompatibility = JavaVersion.VERSION_1_7
+//}
+
+dependencies {
+    implementation gradleApi() //必须
+    implementation localGroovy() //必须
+}
+
+repositories {
+    //google()
+    jcenter()
+    mavenCentral() //必须
+}

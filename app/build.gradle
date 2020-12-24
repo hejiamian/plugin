@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.application'
+    id 'build-plugin'
+    id 'standard-plugin'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.github.plugin"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation deps.appcompat
+    implementation deps.kotlin.stdlib
+    implementation deps.constraint_layout
+    implementation deps.material
+    testImplementation deps.junit
+    androidTestImplementation deps.test.ext
+    androidTestImplementation deps.espresso.core
+}
