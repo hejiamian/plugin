@@ -1,7 +1,7 @@
-package com.github.plugin
+package com.github.customplugin
 
 import android.os.Bundle
-import com.github.plugin.databinding.ActivityMainBinding
+import com.github.customplugin.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
     companion object {

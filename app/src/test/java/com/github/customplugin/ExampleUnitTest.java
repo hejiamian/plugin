@@ -1,4 +1,4 @@
-package com.github.plugin;
+package com.github.customplugin;
 
 import org.junit.Test;
 

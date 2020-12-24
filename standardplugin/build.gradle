@@ -13,6 +13,7 @@ dependencies {
 //    implementation localGroovy() //必须
     implementation deps.kotlin.stdlib
     implementation deps.asm_all
+    implementation deps.gradle_build
 }
 
 repositories {
