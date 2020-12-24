@@ -31,6 +31,8 @@ deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.c
 
 deps.junit = "junit:junit:$versions.junit"
 
+deps.asm_all = "org.ow2.asm:asm-all:6.0_BETA"
+
 
 def test = [:]
 test.ext = "androidx.test.ext:junit:1.1.2"
