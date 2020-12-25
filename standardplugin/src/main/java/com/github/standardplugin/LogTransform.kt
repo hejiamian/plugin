@@ -6,8 +6,10 @@ import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformInvocation
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.utils.FileUtils
-import proguard.classfile.ClassPool
+import org.objectweb.asm.ClassReader
+import org.objectweb.asm.ClassWriter
 import java.io.File
+import java.io.FileInputStream
 
 
 class LogTransform : Transform() {
@@ -51,8 +53,19 @@ class LogTransform : Transform() {
     }
 
     private fun traversal(file: File) {
-        if (file.isFile){
+        if (file.isFile) {
             println(file.name)
+            val path = file.path
+            val index = path.indexOf("com")
+            val lastIndex = path.indexOf('.')
+            if (file.name == "MainActivity.class") {
+                val className = path.substring(index).replace('.', '\\')
+                println(className)
+                val cw = ClassWriter(ClassWriter.COMPUTE_MAXS)
+                val inputStream = FileInputStream(file.path)
+                val cr = ClassReader(inputStream)
+                cr.accept(LogClassVisitor(cw), ClassReader.SKIP_DEBUG)
+            }
         } else {
             val files = file.listFiles()
             files.forEach {
