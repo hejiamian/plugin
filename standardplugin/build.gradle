@@ -23,7 +23,7 @@ repositories {
 }
 
 def group = 'com.github.standardplugin' //组
-def version = '1.0.0' //版本
+def version = '1.0.1' //版本
 def artifactId = 'standardplugin' //唯一标示
 
 
