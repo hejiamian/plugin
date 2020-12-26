@@ -8,6 +8,10 @@ class LogMethodVisitor(mv: MethodVisitor?, private val methodName: String) : Met
         println("at Method ‘${methodName}’ Begin...")
         super.visitCode()
         mv.visitCode()
+        mv.visitLdcInsn("MainActivity")
+        mv.visitLdcInsn("onCreate")
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "android/util/Log",
+                "d", "(Ljava/lang/String;Ljava/lang/String;)I", false)
     }
 
     override fun visitMethodInsn(p0: Int, p1: String?, p2: String?, p3: String?, p4: Boolean) {

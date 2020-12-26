@@ -16,7 +16,7 @@ class LogClassVisitor(classVisitor: ClassVisitor? = null) : ClassVisitor(Opcodes
     override fun visitMethod(access: Int, name: String, descriptor: String?, signature: String?, exceptions: Array<out String>?): MethodVisitor? {
         val mv = cv?.visitMethod(access, name, descriptor, signature, exceptions)
         println("mv = ${mv?.toString() ?: "null"}")
-        if (!isInterface && mv !== null && name != "<init>") {
+        if (!isInterface && mv !== null && (name != "<init>" || name != "<clinit>")) {
             return LogMethodVisitor(mv, name)
         }
         return mv

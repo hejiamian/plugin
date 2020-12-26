@@ -10,6 +10,7 @@ import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import java.io.File
 import java.io.FileInputStream
+import java.io.FileOutputStream
 
 
 class LogTransform : Transform() {
@@ -65,6 +66,9 @@ class LogTransform : Transform() {
                 val inputStream = FileInputStream(file.path)
                 val cr = ClassReader(inputStream)
                 cr.accept(LogClassVisitor(cw), ClassReader.SKIP_DEBUG)
+
+                val fileOutputStream = FileOutputStream(file)
+                fileOutputStream.write(cw.toByteArray())
             }
         } else {
             val files = file.listFiles()
