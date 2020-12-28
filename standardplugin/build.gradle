@@ -29,6 +29,7 @@ def artifactId = 'standardplugin' //唯一标示
 
 //将插件打包上传到本地maven仓库
 uploadArchives {
+    clean
     repositories {
         mavenDeployer {
             pom.groupId = group
@@ -38,4 +39,8 @@ uploadArchives {
             repository(url: uri('../repos'))
         }
     }
+}
+
+clean {
+    delete ("./build/")
 }

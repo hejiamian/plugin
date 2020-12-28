@@ -14,5 +14,10 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         mViewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mViewBinding.root)
+        initData()
+    }
+
+    private inline fun initData() {
+
     }
 }

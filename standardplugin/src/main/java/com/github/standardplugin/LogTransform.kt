@@ -59,7 +59,7 @@ class LogTransform : Transform() {
             val path = file.path
             val index = path.indexOf("com")
             val lastIndex = path.indexOf('.')
-            if (file.name == "MainActivity.class") {
+            if (file.name.endsWith("Activity.class")) {
                 val className = path.substring(index).replace('.', '\\')
                 println(className)
                 val cw = ClassWriter(ClassWriter.COMPUTE_MAXS)
