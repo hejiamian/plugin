@@ -19,16 +19,17 @@ class LogClassVisitor(classVisitor: ClassVisitor? = null) : ClassVisitor(Opcodes
     override fun visitMethod(access: Int, name: String, descriptor: String?, signature: String?, exceptions: Array<out String>?): MethodVisitor? {
         val mv = cv?.visitMethod(access, name, descriptor, signature, exceptions)
         println("mv = ${mv?.toString() ?: "null"}")
-        if (!isAbstract && !isInterface && mv !== null && (name != "<init>" || name != "<clinit>")) {
+        if (!isAbstract && !isInterface && mv !== null && name != owner && (name != "<init>" || name != "<clinit>")) {
             return LogMethodVisitor(mv, name)
         }
         return mv
     }
 
-    override fun visitField(access: Int, name: String, desc: String?, signature: String?, value: Any?): FieldVisitor? {
+    override fun visitField(access: Int, name: String, desc: String, signature: String?, value: Any?): FieldVisitor? {
         val vf = cv?.visitField(access, name, desc, signature, value)
         println("field name = $name")
-        if (vf !== null && (access and (Opcodes.ACC_STATIC or Opcodes.ACC_FINAL) != 0)) {
+        if (vf !== null && ((access and (Opcodes.ACC_STATIC or Opcodes.ACC_FINAL) != 0)
+                || (access and Opcodes.ACC_STATIC) != 0) && desc.contains('L')) {
             return ScanFieldVisitor(vf)
         }
         return vf

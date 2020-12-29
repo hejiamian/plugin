@@ -10,6 +10,7 @@ import com.github.customplugin.databinding.ActivityPluginBinding;
 public class PluginActivity extends BaseActivity {
     private static final String TAG = "PluginActivity";
     private ActivityPluginBinding mViewBinding;
+    private GithubViewModel mGithubViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,5 +22,10 @@ public class PluginActivity extends BaseActivity {
 
     private void initData() {
         Log.i(TAG, "initData");
+        mGithubViewModel = new GithubViewModel();
+    }
+
+    public GithubViewModel getGithubViewModel() {
+        return mGithubViewModel;
     }
 }
